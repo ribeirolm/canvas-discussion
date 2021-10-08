@@ -1,16 +1,10 @@
 const capi = require('node-canvas-api')
-const { flatten } = require('./util')
-const writeToCSV = require('./writeToCSV')
+const writeWeeklyDiscussionsToCSV = require('./writeWeeklyDiscussionsToCSV')
 
 const getDiscussionTopicIds = courseId => capi.getDiscussionTopics(courseId)
   .then(discussions => discussions.map(x => x.id))
 
-// recursively get nested replies and flatten result
-const getNestedReplies = (replyObj, participants, topicId) => {
-  const replies = replyObj.hasOwnProperty('replies')
-    ? flatten(
-      replyObj.replies.map(replyObj => getNestedReplies(replyObj, participants))
-    ) : []
+const getReplyDetails = (replyObj, participants, topicId) => {
   const authorName = participants.find(x => x.id === replyObj.user_id)
     ? participants.find(x => x.id === replyObj.user_id).display_name
     : ''
@@ -23,7 +17,7 @@ const getNestedReplies = (replyObj, participants, topicId) => {
     timestamp: replyObj.created_at,
     parentId: replyObj.parent_id || topicId,
     id: replyObj.id
-  }, ...replies]
+  }]
 }
 
 const getDiscussions = async courseId => {
@@ -45,7 +39,7 @@ const getDiscussions = async courseId => {
     const replies = discussion.view.length > 0
       ? discussion.view
         .filter(x => !x.deleted)
-        .map(reply => getNestedReplies(reply, participants, topicId))
+        .map(reply => getReplyDetails(reply, participants, topicId))
       : []
     return {
       topicTitle,
@@ -61,7 +55,7 @@ const getDiscussions = async courseId => {
 
 
 Promise.all([
-  //{course id} add course ID here!
+  courseId = 225174
 ].map(courseId => getDiscussions(courseId)
-  .then(discussions => writeToCSV(courseId, discussions))
+  .then(discussions => writeWeeklyDiscussionsToCSV(courseId, discussions))
 ))
