@@ -61,7 +61,7 @@ const getDiscussions = async courseId => {
 
 
 Promise.all([
-  //{course id} add course ID here!
+  courseId = 225174
 ].map(courseId => getDiscussions(courseId)
   .then(discussions => writeToCSV(courseId, discussions))
 ))
