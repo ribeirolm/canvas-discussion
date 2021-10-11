@@ -19,7 +19,7 @@ const writeWeeklyDiscussionsToCSV = (courseId, data) => {
   ]
 
   data.forEach(discussion => {
-      const csv = path.join(__dirname, `output/${courseId}-${discussion.topicTitle}-discussion.csv`)
+      const csv = path.join(__dirname, `output/${discussion.topicTitle.replace(/[^A-Z0-9]+/ig, "_")}.csv`)
       writeHeader(csv, header)
 
       discussion.replies.forEach(reply =>
