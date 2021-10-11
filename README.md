@@ -1,4 +1,10 @@
 # MHI-2007 Discussions
+
+## Background
+For MHI-2007 we post weekly discussion videos and track responses to follow-up questions as a way to evaluate engagement for participation marks in the course. We would like to share the discussion responses with our guest speakers who have provided the discussion content , however, there is no easy way to export discussion post & response data via the Quercus UI. Mentors have had to manually copy and paste responses into an excel spreadsheet on OneDrive to share with guest speakers. This task is very manual and time-consuming.
+
+To automate this process I've forked the canvas-discussion repo and configured the transformation steps to our specific requirements. Now these files can be automatically generated and the mentor would only need to mark down in our master sheet the student who had posted a response and do a quick skim through the discussion thread to ensure no student has responded as a nested reply to another response (as nested replies are not captured in the CSV output).
+
 This project pulls via the Canvas API the discussions from MHI-2007 (Fall 2021) and exports data from each discussion as a CSV. The columns exported are:
 * 'author_name',
 * 'discussion_topic_title',
