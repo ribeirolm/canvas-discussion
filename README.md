@@ -1,6 +1,5 @@
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-# Canvas Discussion
-This project pulls via the Canvas API the discussions from the specified Canvas course and exports data from each discussion as a CSV. The columns exported are:
+# MHI-2007 Discussions
+This project pulls via the Canvas API the discussions from MHI-2007 (Fall 2021) and exports data from each discussion as a CSV. The columns exported are:
 * 'author_name',
 * 'discussion_topic_title',
 * 'post_message',
@@ -8,7 +7,7 @@ This project pulls via the Canvas API the discussions from the specified Canvas 
 * 'timestamp'
 
 ## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for use with your own API tokens and Canvas domains.
+These instructions will get you a copy of the project up and running on your local machine for use with your own API token.
 
 ### Prerequisites
 
